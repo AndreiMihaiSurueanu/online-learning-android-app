@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {f
+public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
 
@@ -31,7 +31,12 @@ public class MainActivity extends AppCompatActivity {f
         call.enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+
                 List<Category> categoryList = response.body();
+
+                //getAllCategory(categoryList);
+
+                //lets run it
             }
 
             @Override
