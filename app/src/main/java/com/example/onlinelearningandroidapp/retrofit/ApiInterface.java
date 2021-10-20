@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface ApiInterface {
 
-    @GET("courses")
+    @GET("courses.json")
     Call<List<Category>> getAllCategory();
 
 }
