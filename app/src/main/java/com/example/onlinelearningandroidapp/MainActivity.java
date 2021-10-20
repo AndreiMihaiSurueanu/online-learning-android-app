@@ -1,10 +1,13 @@
 package com.example.onlinelearningandroidapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.onlinelearningandroidapp.adapter.CategoryAdapter;
 import com.example.onlinelearningandroidapp.model.Category;
 import com.example.onlinelearningandroidapp.retrofit.ApiInterface;
 import com.example.onlinelearningandroidapp.retrofit.RetrofitClient;
@@ -17,6 +20,9 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView categoryRecyclerView;
+    CategoryAdapter categoryAdapter;
+
     ApiInterface apiInterface;
 
     @Override
@@ -26,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
 
+        categoryRecyclerView = findViewById(R.id.course_recycler);
+
         Call<List<Category>> call = apiInterface.getAllCategory();
 
         call.enqueue(new Callback<List<Category>>() {
@@ -34,9 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
                 List<Category> categoryList = response.body();
 
-                //getAllCategory(categoryList);
+                getAllCategory(categoryList);
 
-                //lets run it
             }
 
             @Override
@@ -46,4 +53,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void getAllCategory(List<Category> categoryList){
+
+        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, 1);
+        categoryRecyclerView.setLayoutManager(layoutManager);
+        categoryAdapter = new CategoryAdapter(this, categoryList);
+        categoryRecyclerView.setAdapter(categoryAdapter);
+        categoryAdapter.notifyDataSetChanged();
+
+    }
+
 }
