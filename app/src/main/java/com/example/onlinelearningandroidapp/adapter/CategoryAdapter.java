@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +36,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
 
+        holder.categoryName.setText(categoryList.get(position).getCategoryName());
+        holder.totalCategory.setText(categoryList.get(position).getTotalCourses());
+
     }
 
     @Override
@@ -42,8 +47,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView categoryImage;
+        TextView categoryName, totalCategory;
+
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            categoryImage = itemView.findViewById(R.id.course);
+            categoryName = itemView.findViewById(R.id.course_name);
+            totalCategory = itemView.findViewById(R.id.total_course);
+
         }
     }
 }
