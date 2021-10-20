@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.onlinelearningandroidapp.R;
 import com.example.onlinelearningandroidapp.model.Category;
 
@@ -38,6 +39,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         holder.categoryName.setText(categoryList.get(position).getCategoryName());
         holder.totalCategory.setText(categoryList.get(position).getTotalCourses());
+
+        Glide.with(context).load(categoryList.get(position).getImage()).into(holder.categoryImage);
+
 
     }
 
